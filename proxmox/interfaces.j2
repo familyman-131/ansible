@@ -1,0 +1,36 @@
+# This file describes the network interfaces available on your system
+# and how to ativate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+# device: {{ansible_default_ipv4.interface}}
+allow-hotplug {{ansible_default_ipv4.interface}}}
+auto  {{ansible_default_ipv4.interface}}
+#iface {{ansible_default_ipv4.interface}} inet dhcp
+iface {{ansible_default_ipv4.interface}} inet manual
+
+auto vmbr0
+iface vmbr0 inet static
+    address   {{ansible_default_ipv4.address}}
+    netmask   {{ansible_default_ipv4.netmask}}
+    gateway   {{ansible_default_ipv4.gateway}}
+    dns-nameservers 8.8.4.4 8.8.8.8
+    bridge_ports {{ansible_default_ipv4.interface}}
+    bridge_stp off
+    bridge_fd 0
+
+# to restart interfaces
+# ip addr flush dev vmbr0  &&  systemctl restart networking.service
+
+auto {{vmbr_name}}
+iface {{vmbr_name}} inet static
+        address  {{vmbr_ipv4_address}}
+        netmask  {{vmbr_ipv4_netmask}}
+        bridge_ports none
+        bridge_stp off
+        bridge_fd 0

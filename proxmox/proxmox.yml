@@ -1,0 +1,100 @@
+---
+- hosts: localhost
+  tasks:
+
+  - name: set variables
+    set_fact:
+      server_name: trololo
+      vm_ipv4_address: 192.168.23.100
+      vm_network: 192.168.23.0/24
+      vm_ext_port: 3389
+      vm_int_port: 3389
+      vmbr_name: vmbr23
+      vmbr_ipv4_address: 192.168.23.1
+      vmbr_ipv4_netmask: 255.255.255.0
+
+
+  - name: copy hosts template
+    template:
+      src: hosts.j2
+      dest: /etc/hosts
+
+  - name: copy interfaces template
+    template:
+      src: interfaces.j2
+      dest: /etc/network/interfaces
+
+  - name: create iptables folder
+    file:
+      dest: /etc/iptables
+      state: directory
+
+
+  - name: copy rules template
+    template:
+      src: rules.j2
+      dest: /etc/iptables/rules
+
+  - name: Update all packages to the latest version
+    apt:
+      upgrade: dist
+
+  - name: Run the equivalent of "apt-get update" as a separate step
+    apt:
+      update_cache: yes
+
+  - name: install basic packages
+    action: >
+      {{ ansible_pkg_mgr }} name={{ item }} state=present
+    with_items:
+      - aptitude
+      - mc
+      - htop
+      - iotop
+      - sysstat
+      - nload
+      - lshw
+      - iptables-persistent
+
+  - name: disable ipv6 in sysctl
+    shell: echo "# IPv6 disabled \n net.ipv6.conf.all.disable_ipv6 = 1 \n net.ipv6.conf.default.disable_ipv6 = 1 \n net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
+
+  - name: Add prox apt signing key
+    apt_key:
+      url: http://download.proxmox.com/debian/proxmox-ve-release-5.x.gpg
+      state: present
+
+  - name: add prox repo
+    apt_repository:
+      repo: "deb http://download.proxmox.com/debian/pve {{ ansible_distribution_release|lower }} pve-no-subscription"
+      state: present
+      filename: 'pve-install-repo.list'
+
+  - name: Update all packages to the latest version
+    apt:
+      upgrade: dist
+
+  - name: Run the equivalent of "apt-get update" as a separate step
+    apt:
+      update_cache: yes
+
+  - name: install prox packages
+    action: >
+      {{ ansible_pkg_mgr }} name={{ item }} state=present
+    with_items:
+      - proxmox-ve
+      - postfix
+      - open-iscsi
+
+  - name: remove os-prober
+    action: >
+      {{ ansible_pkg_mgr }} name=os-prober state=absent
+
+  - name: remove pve-subscription file
+    file:
+      dest: /etc/apt/sources.list.d/pve-enterprise.list
+      state: absent
+
+#  - debug:
+#      msg: "test var {{ ansible_dns.nameservers}}"
+

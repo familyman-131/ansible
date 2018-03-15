@@ -1,0 +1,19 @@
+*filter
+:INPUT ACCEPT [19704876:7422147666]
+:FORWARD ACCEPT [2919600299:627375040379]
+:OUTPUT ACCEPT [51538287:5036423797]
+-A INPUT -s 127.0.0.1/32 -p udp -m udp --dport 111 -j ACCEPT
+-A INPUT -p udp -m udp --dport 111 -j DROP
+-A INPUT -s 127.0.0.1/32 -p tcp -m tcp --dport 111 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 111 -j DROP
+-A INPUT -p udp -m udp --dport 3128 -j DROP
+-A INPUT -p tcp -m tcp --dport 3128 -j DROP
+COMMIT
+*nat
+:PREROUTING ACCEPT [11182375:737179965]
+:INPUT ACCEPT [7077484:424398424]
+:OUTPUT ACCEPT [6428641:405053536]
+:POSTROUTING ACCEPT [88509008:5329816391]
+-A PREROUTING -d {{ansible_default_ipv4.address}}/32 -i vmbr0 -p tcp -m tcp --dport {{vm_ext_port}} -j DNAT --to-destination {{vm_ipv4_address}}:{{vm_int_port}}
+-A POSTROUTING -s {{vm_network}} -o vmbr0 -j MASQUERADE
+COMMIT
