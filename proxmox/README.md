@@ -2,8 +2,7 @@ apt install mc python-pip -y && pip install ansible
 git clone https://github.com/familyman-131/ansible.git
 cd ansible/proxmox/ 
 
-you can ajust folloving variables in proxmox.yml
-
+**you can ajust folloving variables in proxmox.yml**
       vm_ipv4_address: 192.168.23.100
       vm_network: 192.168.23.0/24
       vm_ext_port: 3389
@@ -11,8 +10,7 @@ you can ajust folloving variables in proxmox.yml
       vmbr_name: vmbr23
       vmbr_ipv4_address: 192.168.23.1
       vmbr_ipv4_netmask: 255.255.255.0
-
-or just run 
+**or just run **
 ansible-playbook proxmox.yml
 
 
