@@ -1,7 +1,6 @@
 apt install mc python-pip -y && pip install ansible
 git clone https://github.com/familyman-131/ansible.git
 cd ansible/proxmox/ 
-
 **you can ajust folloving variables in proxmox.yml**
       vm_ipv4_address: 192.168.23.100
       vm_network: 192.168.23.0/24
@@ -12,7 +11,6 @@ cd ansible/proxmox/
       vmbr_ipv4_netmask: 255.255.255.0
 **or just run **
 ansible-playbook proxmox.yml
-
 
 # to add real HDD to VM
 # see "product" "serial"
