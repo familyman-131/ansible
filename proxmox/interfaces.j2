@@ -9,7 +9,7 @@ iface lo inet loopback
 
 # The primary network interface
 # device: {{ansible_default_ipv4.interface}}
-allow-hotplug {{ansible_default_ipv4.interface}}}
+allow-hotplug {{ansible_default_ipv4.interface}}
 auto  {{ansible_default_ipv4.interface}}
 #iface {{ansible_default_ipv4.interface}} inet dhcp
 iface {{ansible_default_ipv4.interface}} inet manual
