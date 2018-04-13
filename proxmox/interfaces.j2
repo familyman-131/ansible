@@ -34,3 +34,4 @@ iface {{vmbr_name}} inet static
         bridge_ports none
         bridge_stp off
         bridge_fd 0
+        post-up echo 1 > /proc/sys/net/ipv4/ip_forward
