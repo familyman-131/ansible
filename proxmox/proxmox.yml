@@ -94,6 +94,6 @@
       dest: /etc/apt/sources.list.d/pve-enterprise.list
       state: absent
 
-#  - debug:
-#      msg: "test var {{ ansible_dns.nameservers}}"
+  - debug:
+      msg: "run command pvecm updatecerts -f for temporary bugfix https://forum.proxmox.com/threads/problem-after-proxmox-installation-no-www-interface.42909/"
 
