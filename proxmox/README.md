@@ -28,6 +28,7 @@ or manually add
 `sfdisk -l -s - shows size in Kb`  
 and make row like this  
 `virtio1: /dev/disk/by-id/ata-WDC_WD5000AAKX-603CA0_WD-WMAYUV041558,size=488386584K`  
+or add one partition like https://mikeeverhart.net/2015/08/proxmox-share-host-hard-drive-with-vm-guest/
 
 Bug 1377155 - "HID Button over Interrupt Driver" not working properly in windows10 and win2016
 Device manager -> Right click HID Button over Interrupt Driver -> Click Update Driver Software...
