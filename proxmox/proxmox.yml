@@ -17,11 +17,13 @@
     template:
       src: hosts.j2
       dest: /etc/hosts
+      backup: yes
 
   - name: copy interfaces template
     template:
       src: interfaces.j2
       dest: /etc/network/interfaces
+      backup: yes
 
   - name: create iptables folder
     file:
@@ -33,6 +35,7 @@
     template:
       src: rules.j2
       dest: /etc/iptables/rules
+      backup: yes
 
   - name: Update all packages to the latest version
     apt:
