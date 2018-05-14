@@ -76,7 +76,7 @@ cp /etc/letsencrypt/live/domain/chain.pem /etc/pve/pve-root-ca.pem
 service pveproxy restart
 service pvedaemon restart
 ```
-crontab this like @monthly /root/bin/cert-renew.sh
+crontab this like: @monthly /root/bin/cert-renew.sh
 ```
 #!/bin/bash
 /usr/bin/certbot renew >> /var/log/letsencrypt/letsencrypt.log
