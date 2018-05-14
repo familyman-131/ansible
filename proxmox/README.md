@@ -63,3 +63,16 @@ normally result must be as:
 [Sun Mar 26 19:10:38 EEST 2017] Run reload cmd: systemctl restart pveproxy
 [Sun Mar 26 19:10:40 EEST 2017] Reload success
 ```
+alternate https-gen method   
+```
+aptitude install certbot
+certbot certonly --standalone --agree-tos -m user@email -d domain
+rm -rf /etc/pve/local/pve-ssl.pem  
+rm -rf /etc/pve/local/pve-ssl.key  
+rm -rf /etc/pve/pve-root-ca.pem  
+cp /etc/letsencrypt/live/domain/fullchain.pem  /etc/pve/local/pve-ssl.pem  
+cp /etc/letsencrypt/live/domain/privkey.pem /etc/pve/local/pve-ssl.key  
+cp /etc/letsencrypt/live/domain/chain.pem /etc/pve/pve-root-ca.pem 
+service pveproxy restart
+service pvedaemon restart
+```
