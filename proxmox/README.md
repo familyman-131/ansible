@@ -16,6 +16,14 @@ you can ajust folloving variables in proxmox.yml
 or just run  
 `ansible-playbook proxmox.yml`
 
+to add vmbr without ip addresses
+```  
+auto vmbr33
+iface vmbr33 inet manual
+        bridge_ports eno1
+        bridge_stp off
+        bridge_fd 0
+```  
 to add real HDD to VM
 see "product" "serial"  
 `lshw -class disk -class storage`  
