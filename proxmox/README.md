@@ -20,7 +20,7 @@ to add vmbr without ip addresses
 ```  
 auto vmbr33
 iface vmbr33 inet manual
-        bridge_ports eno1
+        bridge_ports eth1
         bridge_stp off
         bridge_fd 0
 ```  
