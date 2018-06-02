@@ -18,9 +18,13 @@ or just run
 
 to add vmbr without ip addresses
 ```  
+# device: eno1
+allow-hotplug eno1
+auto  eno1
+iface eno1 inet manual
 auto vmbr33
 iface vmbr33 inet manual
-        bridge_ports eth1
+        bridge_ports eno1
         bridge_stp off
         bridge_fd 0
 ```  
