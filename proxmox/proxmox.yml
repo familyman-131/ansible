@@ -60,6 +60,7 @@
       - screen
       - mlocate
       - certbot
+      - isc-dhcp-server
 
   - name: disable ipv6 in sysctl
     shell: echo "# IPv6 disabled \n net.ipv6.conf.all.disable_ipv6 = 1 \n net.ipv6.conf.default.disable_ipv6 = 1 \n net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
@@ -99,6 +100,18 @@
     file:
       dest: /etc/apt/sources.list.d/pve-enterprise.list
       state: absent
+      
+  - name: copy dhcp default
+    template:
+      src: isc-dhcp-server.j2
+      dest: /etc/default/isc-dhcp-server
+      backup: yes
+
+  - name: copy dhcp rules
+    template:
+      src: dhcpd.conf.j2
+      dest: /etc/dhcp/dhcpd.conf
+      backup: yes
 
   - debug:
       msg: "run command pvecm updatecerts -f for temporary bugfix https://forum.proxmox.com/threads/problem-after-proxmox-installation-no-www-interface.42909/"
