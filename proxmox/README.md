@@ -34,7 +34,7 @@ see "product" "serial"
 check it with /dev/"disk"  
 `ls -l /dev/disk/by-id/ata\sata-"product"`  
 add it to VM  
-`qm set 100 -virtio1  -virtio1 /dev/disk/by-id/ata\sata-"product"`  
+`qm set 100 -virtio1 /dev/disk/by-id/ata\sata-"product"`  
 check it in VM.conf  
 or manually add   
 `sfdisk -l -s - shows size in Kb`  
