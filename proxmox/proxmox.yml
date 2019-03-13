@@ -91,6 +91,7 @@
       - proxmox-ve
       - postfix
       - open-iscsi
+      - ksm-control-daemon
 
   - name: remove os-prober
     action: >
