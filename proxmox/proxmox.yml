@@ -68,6 +68,9 @@
   - name: disable ipv6 in sysctl
     shell: echo "# IPv6 disabled \n net.ipv6.conf.all.disable_ipv6 = 1 \n net.ipv6.conf.default.disable_ipv6 = 1 \n net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
 
+  - name: adjust rebuild raid speed in sysctl
+    shell: echo "# adjust rebuild raid speed \n dev.raid.speed_limit_min = 100000 \n dev.raid.speed_limit_max = 2000000" >> /etc/sysctl.conf
+
   - name: Add prox apt signing key
     apt_key:
       url: http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg
