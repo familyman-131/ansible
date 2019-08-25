@@ -70,7 +70,7 @@
 
   - name: Add prox apt signing key
     apt_key:
-      url: http://download.proxmox.com/debian/proxmox-ve-release-5.x.gpg
+      url: http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg
       state: present
 
   - name: add prox repo
