@@ -121,6 +121,11 @@
       dest: /etc/dhcp/dhcpd.conf
       backup: yes
 
+  - name: Set timezone to Europe/Kiev
+    community.general.timezone:
+      name: Europe/Kiev
+
+
   - debug:
       msg: "run command pvecm updatecerts -f for temporary bugfix https://forum.proxmox.com/threads/problem-after-proxmox-installation-no-www-interface.42909/"
 
