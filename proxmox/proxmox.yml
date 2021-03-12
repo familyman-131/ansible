@@ -46,9 +46,8 @@
       update_cache: yes
 
   - name: install basic packages
-    action: >
-      {{ ansible_pkg_mgr }} name={{ item }} state=present
-    with_items:
+    apt:
+      pkg:
       - aptitude
       - mc
       - htop
@@ -94,9 +93,8 @@
       update_cache: yes
 
   - name: install prox packages
-    action: >
-      {{ ansible_pkg_mgr }} name={{ item }} state=present
-    with_items:
+    apt:
+      pkg:
       - proxmox-ve
       - postfix
       - open-iscsi
