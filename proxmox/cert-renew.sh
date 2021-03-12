@@ -3,7 +3,7 @@
 domain="example.com"
 
 # comment after first use
-certbot certonly --standalone --agree-tos -m user@email -d ${domain}
+certbot certonly --standalone --agree-tos -m reports@it-man.pro -d ${domain}
 
 /usr/bin/certbot renew >> /var/log/letsencrypt/letsencrypt.log
 rm -rf /etc/pve/local/pve-ssl.pem
