@@ -1,3 +1,8 @@
+# to do 
+# add 
+# sed -i.bak "s/data.status !== 'Active'/false/g" /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js && systemctl restart pveproxy.service
+# to playbook
+
 ```
 apt install git mc python-pip -y && pip install ansible
 git clone https://github.com/familyman-131/ansible.git
