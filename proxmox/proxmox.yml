@@ -75,7 +75,7 @@
 
   - name: Add prox apt signing key
     apt_key:
-      url: http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg
+      url: https://enterprise.proxmox.com/debian/proxmox-release-bullseye.gpg
       state: present
 
   - name: add prox repo
