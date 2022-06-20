@@ -75,10 +75,10 @@
     shell: echo "# adjust rebuild raid speed \n dev.raid.speed_limit_min = 100000 \n dev.raid.speed_limit_max = 2000000" >> /etc/sysctl.conf
 
   - name: Add prox apt signing key
-    apt_key:
+    ansible.builtin.apt_key:
       url: https://enterprise.proxmox.com/debian/proxmox-release-bullseye.gpg
       state: present
-
+      
   - name: add prox repo
     apt_repository:
       repo: "deb http://download.proxmox.com/debian/pve {{ ansible_distribution_release|lower }} pve-no-subscription"
