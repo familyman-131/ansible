@@ -49,7 +49,7 @@
     apt:
       pkg:
       - aptitude
-      - gpg
+      - gpg-agent
       - mc
       - htop
       - iotop
