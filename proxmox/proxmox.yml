@@ -49,6 +49,7 @@
     apt:
       pkg:
       - aptitude
+      - gpg
       - mc
       - htop
       - iotop
