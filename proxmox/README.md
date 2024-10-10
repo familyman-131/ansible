@@ -4,7 +4,7 @@
 ` to playbook
 
 ```
-apt install git mc python-pip -y && pip install ansible
+apt install git mc   ansible -y
 git clone https://github.com/familyman-131/ansible.git
 cd ansible/proxmox/ 
 ```  
