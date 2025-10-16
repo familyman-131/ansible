@@ -76,7 +76,7 @@
 
   - name: Add prox apt signing key
     ansible.builtin.apt_key:
-      url: https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg
+      url: https://enterprise.proxmox.com/debian/proxmox-archive-keyring.gpg
       state: present
       
   - name: add prox repo
