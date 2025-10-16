@@ -122,9 +122,9 @@
       dest: /etc/dhcp/dhcpd.conf
       backup: yes
 
-  - name: Set timezone to Europe/Kiev
+  - name: Set timezone to Europe/Kyiv
     community.general.timezone:
-      name: Europe/Kiev
+      name: Europe/Kyiv
 
 
   - debug:
