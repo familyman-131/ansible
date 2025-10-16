@@ -1,0 +1,67 @@
+---
+- hosts: localhost
+  tasks:
+
+  - name: set variables
+    set_fact:
+      vm_ipv4_address: 192.168.23.100
+      vm_network: 192.168.23.0/24
+      vm_ext_port: 3389
+      vm_int_port: 3389
+      vmbr_name: vmbr23
+      vmbr_ipv4_address: 192.168.23.1
+      vmbr_ipv4_netmask: 255.255.255.0
+
+# no need this if PVE installed from officical image
+#  - name: copy hosts template
+#    template:
+#      src: hosts.j2
+#      dest: /etc/hosts
+#      backup: yes
+
+  - name: copy interfaces template
+    template:
+      src: interfaces.j2
+      dest: /etc/network/interfaces
+      backup: yes
+
+  - name: create iptables folder
+    file:
+      dest: /etc/iptables
+      state: directory
+
+  - name: copy rules template
+    template:
+      src: rules.j2
+      dest: /etc/iptables/rules
+      backup: yes
+
+  - name: copy dhcp default
+    template:
+      src: isc-dhcp-server.j2
+      dest: /etc/default/isc-dhcp-server
+      backup: yes
+
+  - name: copy dhcp rules
+    template:
+      src: dhcpd.conf.j2
+      dest: /etc/dhcp/dhcpd.conf
+      backup: yes
+
+  - name: install basic packages
+    apt:
+      pkg:
+      - htop
+      - iotop
+      - sysstat
+      - nload
+      - lshw
+      - iptables-persistent
+      - screen
+      - plocate
+      - certbot
+      - isc-dhcp-server
+
+  - name: Set timezone to Europe/Kyiv
+    community.general.timezone:
+      name: Europe/Kyiv
